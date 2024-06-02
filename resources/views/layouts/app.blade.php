@@ -51,13 +51,13 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script data-navigate-once src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"/></script>
+    {{-- <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script> --}}
 
     <!-- Template Main JS File -->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/main.js') }}"></script> --}}
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>
