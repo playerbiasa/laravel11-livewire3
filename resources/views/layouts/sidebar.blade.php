@@ -47,9 +47,16 @@
         <li class="nav-heading">Master Data</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
+            <a class="nav-link collapsed" href="{{ route('admin.mahasiswalist') }}" wire:navigate>
                 <i class="bi bi-person"></i>
-                <span>Profile</span>
+                <span>Mahasiswa</span>
+            </a>
+        </li><!-- End Mahasiswa Page Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('admin.prodilist') }}" wire:navigate>
+                <i class="bi bi-person"></i>
+                <span>Program Studi</span>
             </a>
         </li><!-- End Profile Page Nav -->
     </ul>

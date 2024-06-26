@@ -15,20 +15,14 @@
                                 <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                 <p class="text-center small">Enter your email or username & password to login</p>
                             </div>
-                            <form class="row g-3 needs-validation" novalidate>
+                            <form wire:submit="save" class="row g-3 needs-validation" novalidate>
                                 <div class="col-12">
                                     <label for="yourUsername" class="form-label">Email or Username</label>
-                                    <div class="input-group has-validation">
-                                        <input type="text" name="username" class="form-control" id="yourUsername"
-                                            required>
-                                        <div class="invalid-feedback">Please enter your email or username.</div>
-                                    </div>
+                                        <x-input-text name="login" id="login"/>
                                 </div>
                                 <div class="col-12">
                                     <label for="yourPassword" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" id="yourPassword"
-                                        required>
-                                    <div class="invalid-feedback">Please enter your password!</div>
+                                    <x-input-password name="password" id="password"/>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">
