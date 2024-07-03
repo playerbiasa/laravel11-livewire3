@@ -46,12 +46,9 @@
                                         <td>{{ $item->jenjang }}</td>
                                         <td>{{ $item->created_at->isoFormat('D MMMM YYYY') }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-title="show"><i class="bi bi-folder"></i></button>
-                                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" data-bs-title="edit"><i class="bi bi-check-circle"></i></button>
-                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-title="delete"><i class="bi bi-exclamation-octagon"></i></button>
+                                            <button type="button" class="btn btn-sm btn-info"><i class="bi bi-folder"></i></button>
+                                            <button type="button" class="btn btn-sm btn-success"><i class="bi bi-check-circle"></i></button>
+                                            <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-exclamation-octagon"></i></button>
                                         </td>
                                     </tr>
                                     @empty
@@ -62,21 +59,82 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $prodis->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <x-modal id="prodiModal" title="Tambah Program Studi">
-        @livewire('prodis.prodi-create')
-    </x-modal>
+
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" id="prodiModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form wire:submit.prevent="simpanProdi" autocomplete="off">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Program Studi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label for="namaProdi" class="form-label">Nama Program Studi</label>
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" wire:model="nama" placeholder="Enter data">
+                                @error('nama')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="jenjangProdi" class="form-label">Jenjang</label>
+                                <input type="text" class="form-control @error('jenjang') is-invalid @enderror" name="jenjang" id="jenjang" wire:model="jenjang" placeholder="Enter data">
+                                @error('jenjang')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="singkatanProdi" class="form-label">Singkatan</label>
+                                <input type="text" class="form-control @error('singkatan') is-invalid @enderror" name="singkatan" id="singkatan" wire:model="singkatan" placeholder="Enter data">
+                                @error('singkatan')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
 </div>
 
-@push('scripts')
-<script>
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-</script>
+@push('myscripts')
+    <script>
+        window.addEventListener('dataSaved', event => {
+            $('#prodiModal').modal('hide');
+        });
+
+        // notifikasi berhasil simpan
+        window.addEventListener('alert', (event) => {
+            const data = event.detail;
+            const text = data[0].text;
+            const icon = data[0].icon;
+            const title = data[0].title;
+
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: icon
+            });
+        });
+    </script>
 @endpush

@@ -169,5 +169,7 @@ return [
     |
     */
 
-    'pagination_theme' => 'tailwind',
+    //default livewire
+    // 'pagination_theme' => 'tailwind',
+    'pagination_theme' => 'bootstrap',
 ];

@@ -15,14 +15,15 @@
                                 <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                 <p class="text-center small">Enter your email or username & password to login</p>
                             </div>
-                            <form wire:submit="save" class="row g-3 needs-validation" novalidate>
+                            <form action="{{ route('admin.dashboard') }}" method="POST" class="row g-3 needs-validation" novalidate>
+                                @csrf
                                 <div class="col-12">
-                                    <label for="yourUsername" class="form-label">Email or Username</label>
-                                        <x-input-text name="login" id="login"/>
+                                    <label for="usertype" class="form-label">Email or Username</label>
+                                    <input type="text" class="form-control" name="usertype" id="usertype">
                                 </div>
                                 <div class="col-12">
                                     <label for="yourPassword" class="form-label">Password</label>
-                                    <x-input-password name="password" id="password"/>
+                                    <input type="password" class="form-control" name="password" id="password">
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">

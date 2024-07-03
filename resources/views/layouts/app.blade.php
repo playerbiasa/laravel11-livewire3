@@ -49,10 +49,14 @@
 
     <!-- Vendor JS Files -->
     <script data-navigate-once src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"/></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/sweetalert2/sweetalert2.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @livewireScripts
-    @stack('scripts')
+
+    <!-- custom script -->
+    @stack('myscripts')
 </body>
 
 </html>
