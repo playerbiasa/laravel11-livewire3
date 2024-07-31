@@ -14,4 +14,14 @@ class Prodi extends Model
         'jenjang',
         'singkatan',
     ];
+
+    public function setNamaAttribute($value)
+    {
+        $this->attributes['nama'] = ucwords($value);
+    }
+
+    public function setJenjangAttribute($value)
+    {
+        $this->attributes['jenjang'] = ucfirst($value);
+    }
 }

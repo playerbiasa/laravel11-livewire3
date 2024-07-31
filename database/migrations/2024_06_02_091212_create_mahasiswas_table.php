@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
             $table->string('nim', 10);
-            $table->string('name', 100);
+            $table->string('nama', 100);
             $table->string('tempat_lahir', 20)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('email')->unique()->nullable();

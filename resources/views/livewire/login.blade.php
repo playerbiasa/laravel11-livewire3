@@ -13,17 +13,29 @@
                         <div class="card-body">
                             <div class="pt-4 pb-2">
                                 <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                                <p class="text-center small">Enter your email or username & password to login</p>
                             </div>
-                            <form action="{{ route('admin.dashboard') }}" method="POST" class="row g-3 needs-validation" novalidate>
+                            @if (session()->has('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+                            <form wire:submit.prevent="login" action="" method="POST" class="row g-3" autocomplete="off">
                                 @csrf
                                 <div class="col-12">
-                                    <label for="usertype" class="form-label">Email or Username</label>
-                                    <input type="text" class="form-control" name="usertype" id="usertype">
+                                    <input type="text" wire:model.live="usertype" class="form-control @if($errors->has('usertype')) is-invalid @elseif($usertype == NULL) @else is-valid @endif" name="usertype" id="usertype" placeholder="Masukkan username atau email">
+                                    @error('usertype') <span class="invalid-feedback">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-12">
-                                    <label for="yourPassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" name="password" id="password">
+                                    <input type="password" wire:model.live="password" class="form-control @if($errors->has('password')) is-invalid @elseif($password == NULL) @else is-valid @endif" name="password" id="password" placeholder="Masukkan Password">
+                                    @error('password') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="col-12">
+                                    <select id="guard" wire:model.live="guard" class="form-select @if($errors->has('guard')) is-invalid @elseif($guard == NULL) @else is-valid @endif" name="guard">
+                                        <option value="" hidden>--PILIH--</option>
+                                        <option value="mahasiswa">Mahasiswa</option>
+                                        <option value="user">Staf Administrasi</option>
+                                    </select>
+                                    @error('guard') <span class="invalid-feedback">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">

@@ -26,6 +26,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    @stack('styles')
     @livewireStyles
 </head>
 
@@ -52,11 +53,12 @@
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/sweetalert2/sweetalert2.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+
     @livewireScripts
 
     <!-- custom script -->
     @stack('myscripts')
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>
